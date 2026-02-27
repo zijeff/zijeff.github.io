@@ -19,12 +19,12 @@
   <meta name="author" content="zijeff">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome 打开官方的discord服务器，稍加查看后即可得到flag。  Leonine Misbegotten 理解题目意思后就很好做了，每轮操作对当前状态随机选取一种编码方式加密，从而得到下一状态的一部分，再对当前状态求 sha1 作为下一状态的另一部分，拼接得到下一状态。 sn + 1 &#x3D; f(sn) + sha1(sn) 因为 sha1 得到的字节数为固定的，所以可以提">
+    <meta name="description" content="Welcome 打开官方的discord服务器，稍加查看后即可得到flag。  Leonine Misbegotten 理解题目意思后就很好做了，每轮操作对当前状态随机选取一种编码方式加密，从而得到下一状态的一部分，再对当前状态求 sha1 作为下一状态的另一部分，拼接得到下一状态。 sn + 1 &#x3D; f(sn) + sha1(sn) 因为 sha1 得到的字节数为固定的，所以可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="0xFunCTF2026wp">
 <meta property="og:url" content="https://zijeff.github.io/2026/02/27/0xFunCTF2026wp/index.html">
 <meta property="og:site_name" content="极天一线云">
-<meta property="og:description" content="Welcome 打开官方的discord服务器，稍加查看后即可得到flag。  Leonine Misbegotten 理解题目意思后就很好做了，每轮操作对当前状态随机选取一种编码方式加密，从而得到下一状态的一部分，再对当前状态求 sha1 作为下一状态的另一部分，拼接得到下一状态。 sn + 1 &#x3D; f(sn) + sha1(sn) 因为 sha1 得到的字节数为固定的，所以可以提">
+<meta property="og:description" content="Welcome 打开官方的discord服务器，稍加查看后即可得到flag。  Leonine Misbegotten 理解题目意思后就很好做了，每轮操作对当前状态随机选取一种编码方式加密，从而得到下一状态的一部分，再对当前状态求 sha1 作为下一状态的另一部分，拼接得到下一状态。 sn + 1 &#x3D; f(sn) + sha1(sn) 因为 sha1 得到的字节数为固定的，所以可以">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zijeff.github.io/2026/02/27/0xFunCTF2026wp/1.png">
 <meta property="og:image" content="https://zijeff.github.io/2026/02/27/0xFunCTF2026wp/6.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://zijeff.github.io/2026/02/27/0xFunCTF2026wp/7.png">
 <meta property="og:image" content="https://zijeff.github.io/2026/02/27/0xFunCTF2026wp/8.png">
 <meta property="article:published_time" content="2026-02-27T11:38:08.000Z">
-<meta property="article:modified_time" content="2026-02-27T12:01:40.228Z">
+<meta property="article:modified_time" content="2026-02-27T12:20:41.074Z">
 <meta property="article:author" content="zijeff">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary_large_image">
@@ -291,9 +291,10 @@
 <img src="/2026/02/27/0xFunCTF2026wp/1.png" srcset="/img/loading.gif" lazyload class="">
 <h3 id="leonine-misbegotten">Leonine Misbegotten</h3>
 <p>理解题目意思后就很好做了，每轮操作对当前状态随机选取一种编码方式加密，从而得到下一状态的一部分，再对当前状态求
-<strong>sha1</strong> 作为下一状态的另一部分，拼接得到下一状态。 <span
-class="math display"><em>s</em><sub><em>n</em> + 1</sub> = <em>f</em>(<em>s</em><sub><em>n</em></sub>) + <em>s</em><em>h</em><em>a</em>1(<em>s</em><sub><em>n</em></sub>)</span>
-因为 <strong>sha1</strong>
+<strong>sha1</strong> 作为下一状态的另一部分，拼接得到下一状态。</p>
+<p><span
+class="math display"><em>s</em><sub><em>n</em> + 1</sub> = <em>f</em>(<em>s</em><sub><em>n</em></sub>) + <em>s</em><em>h</em><em>a</em>1(<em>s</em><sub><em>n</em></sub>)</span></p>
+<p>因为 <strong>sha1</strong>
 得到的字节数为固定的，所以可以提取最后的20字节，遍历四种编码方式求解原码，再将其
 <strong>sha1</strong> 值进行比对校验，16次循环处理后即可得到结果。</p>
 <p>具体代码如下：</p>
@@ -301,14 +302,14 @@ class="math display"><em>s</em><sub><em>n</em> + 1</sub> = <em>f</em>(<e
 <p>运行后得到结果：</p>
 <img src="/2026/02/27/0xFunCTF2026wp/6.png" srcset="/img/loading.gif" lazyload class="">
 <h3 id="the-slot-whisperer">The Slot Whisperer</h3>
-<p>显然这是一个线性同余生成器相关的问题，生成过程如下： <span
-class="math display"><em>s</em><sub><em>n</em> + 1</sub> = <em>a</em><em>s</em><sub><em>n</em></sub> + <em>c</em> mod  <em>m</em></span>
-其中<span
-class="math inline"><em>a</em>, <em>c</em>, <em>m</em></span>我们全部已知，seed的值不知道，我们根据输出可以知道生成的前十个数字。进而我们知道
-<span class="math display">$$
-s_i=n_i+100k\quad k\in \Z
-$$</span>
-又因为每次的state是模了m后的结果，所以必然小于m，因此我们可以爆破<span
+<p>显然这是一个线性同余生成器相关的问题，生成过程如下：</p>
+<p><span
+class="math display"><em>s</em><sub><em>n</em> + 1</sub> = <em>a</em><em>s</em><sub><em>n</em></sub> + <em>c</em> mod  <em>m</em></span></p>
+<p>其中<span
+class="math inline"><em>a</em>, <em>c</em>, <em>m</em></span>我们全部已知，seed的值不知道，我们根据输出可以知道生成的前十个数字。进而我们知道：</p>
+<p><span
+class="math display"><em>s</em><sub><em>i</em></sub> = <em>n</em><sub><em>i</em></sub> + 100<em>k</em>  <em>k</em> ∈ ℤ</span></p>
+<p>又因为每次的state是模了m后的结果，所以必然小于m，因此我们可以爆破<span
 class="math inline"><em>k</em></span>的值从而恢复LCG的初始状态。</p>
 <p>PS：因为<span
 class="math inline"><em>m</em> = 2147483647</span>，而循环步长为100，所以只需要2100万次左右的循环即可，这是很快的。</p>
