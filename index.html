@@ -235,7 +235,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/03/01/LilCTF2025wp/" target="_self">
         <div>
-          Warm Up 我们来逐行分析题目：   密钥是固定的： 1key = Random(2025).randbytes(16) 这里使用了 random 库（梅森旋转算法），并且指定了种子 2025。这意味着无论何时运行这段代码，生成的 key 都是完全一样的。我们可以直接在解密脚本中生成同样的 Key。   CBC模式的IV依赖于明文： 1AES.new(key, AES.MODE_CBC, iv
+          Warm Up 我们来逐行分析题目：  密钥是固定的： 1key = Random(2025).randbytes(16) 这里使用了 random 库（梅森旋转算法），并且指定了种子 2025。这意味着无论何时运行这段代码，生成的 key 都是完全一样的。我们可以直接在解密脚本中生成同样的 Key。 CBC模式的IV依赖于明文： 1AES.new(key, AES.MODE_C
         </div>
       </a>
 
@@ -296,7 +296,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2026/02/27/0xFunCTF2026wp/" target="_self">
         <div>
-          Welcome 打开官方的discord服务器，稍加查看后即可得到flag。  Leonine Misbegotten 理解题目意思后就很好做了，每轮操作对当前状态随机选取一种编码方式加密，从而得到下一状态的一部分，再对当前状态求 sha1 作为下一状态的另一部分，拼接得到下一状态。 $$ s_{n+1} = f(s_n) + sha1(s_n) $$ 因为 sha1 得到的字节数为固定的，所以可
+          Welcome 打开官方的discord服务器，稍加查看后即可得到flag。  Leonine Misbegotten 理解题目意思后就很好做了，每轮操作对当前状态随机选取一种编码方式加密，从而得到下一状态的一部分，再对当前状态求 sha1 作为下一状态的另一部分，拼接得到下一状态。 sn + 1 = f(sn) + sha1(sn) 因为 sha1 得到的字节数为固定的，所以可以
         </div>
       </a>
 
