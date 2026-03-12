@@ -1,0 +1,713 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zijeff">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="写在开头 虽然作为网安专业学生之一，但是面对着 AI 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了机器学习和人工智能的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 Kaggle 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。 Intro to Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaggle机器学习笔记">
+<meta property="og:url" content="https://zijeff.github.io/2026/03/12/Kaggle%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="极天一线云">
+<meta property="og:description" content="写在开头 虽然作为网安专业学生之一，但是面对着 AI 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了机器学习和人工智能的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 Kaggle 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。 Intro to Machine Learning">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-11T16:51:33.000Z">
+<meta property="article:modified_time" content="2026-03-12T10:25:35.678Z">
+<meta property="article:author" content="zijeff">
+<meta property="article:tag" content="人工智能 机器学习">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Kaggle机器学习笔记 - 极天一线云</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zijeff.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>极天一线云</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Kaggle机器学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-12 00:51" pubdate>
+          2026年3月12日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Kaggle机器学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="写在开头">写在开头</h2>
+<p>虽然作为网安专业学生之一，但是面对着 <strong>AI</strong> 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了<strong>机器学习和人工智能</strong>的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 <strong>Kaggle</strong> 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。</p>
+<h2 id="Intro-to-Machine-Learning">Intro to Machine Learning</h2>
+<p>这个部分的课程是对机器学习的初步探索，前置知识也很简单，了解 <strong>python</strong> 的基本语法就行。这里我们做的是回归任务，我们希望通过对已有的墨尔本房屋价格及其相关特征训练出一个模型，进而使得这个模型在面对新的房屋特征时，也能较好的预测出价格。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 数据来源于墨尔本的房屋价格</span><br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeRegressor<br><br>file_path = <span class="hljs-string">&quot;./melb_data.csv&quot;</span><br>data = pd.read_csv(file_path)<br>data = data.dropna(axis=<span class="hljs-number">0</span>)<br>y = data.Price<br>data_features = [<span class="hljs-string">&#x27;Rooms&#x27;</span>, <span class="hljs-string">&#x27;Bathroom&#x27;</span>, <span class="hljs-string">&#x27;Landsize&#x27;</span>, <span class="hljs-string">&#x27;BuildingArea&#x27;</span>, <span class="hljs-string">&#x27;YearBuilt&#x27;</span>, <span class="hljs-string">&#x27;Lattitude&#x27;</span>, <span class="hljs-string">&#x27;Longtitude&#x27;</span>]<br>x = data[data_features]<br>model = DecisionTreeRegressor(random_state=<span class="hljs-number">1</span>)<br>model.fit(x, y)<br><br><span class="hljs-comment"># 尝试简单的模型预测</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Making predictions for the following 5 houses:&quot;</span>)<br><span class="hljs-built_in">print</span>(x.head())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The predictions are&quot;</span>)<br><span class="hljs-built_in">print</span>(model.predict(x.head()))<br></code></pre></td></tr></table></figure>
+<p><code>pandas</code> 是用来处理表格数据的库，我们从文件中提取价格数据将其作为我们的预测目标，也就是 $y$ ，我们选取一部分指标作为特征向量作为 $x$ 。因为 <code>sklearn</code> 库中的模型训练大部分只支持数值输入，所以我们需要对字符串的数据做编码处理。因此，我们现在的特征尽可能选取数值型的特征。确定了特征和预测目标后，我们就可以开始训练了，训练中的 <code>random_state</code> 是训练的内部状态，状态一致可以确保训练出来的模型一致，从而确保我得到的结果是可以稳定复现的。</p>
+<p>训练之后，我们可以打印前五行数据，并对其做一个简单预测。然后你会发现，准确率特别高，几乎是一致的。那这毕竟只是前五个数据，所以我们需要一个指标评估模型在整体上的预测效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">predicted_home_prices = model.predict(x)<br><br><span class="hljs-comment"># 计算平均绝对误差</span><br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><span class="hljs-built_in">print</span>(mean_absolute_error(y, predicted_home_prices))<br></code></pre></td></tr></table></figure>
+<p>因此，我们选择了<strong>平均绝对误差（MAE）<strong>来评估模型好坏，其定义如下：<br>
+$$<br>
+MAE = \frac{1}{n}\sum_{i=1}^n\left|y_i-\hat{y}_i\right|<br>
+$$<br>
+其中， $n$ 为样本总数，$y_i$ 是对应样本的真实值，$\hat y_i$ 是对应样本的预测值，为了让误差能够累积，我们采用绝对值。运行后，我们发现我们的模型效果很好啊，只有 400 左右，意味着</strong>百万左右的房子，我们的预测偏差只有 400 左右</strong>。</p>
+<p>但是，实际上我们的模型效果真的有这么好吗？🤔🤔🤔</p>
+<p>如果我们还记得机器学习的相关理论就会知道：这个时候模型往往是陷入了过拟合，即模型直接开始死记硬背训练集的数据特征，那我们的预测效果就会很好了。为了解决这个问题，我们需要将数据集划分为<strong>训练集和验证集</strong>，在训练集上训练模型，在验证集上验证模型的泛化能力。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br><span class="hljs-comment"># 为了验证模型的泛化能力，我们需要将数据划分为训练集和验证集</span><br>train_x, test_x, train_y, test_y = train_test_split(x, y, random_state=<span class="hljs-number">0</span>)<br>model = DecisionTreeRegressor(random_state=<span class="hljs-number">0</span>)<br>model.fit(train_x, train_y)<br>predicted_home_prices = model.predict(test_x)<br><br><span class="hljs-comment"># 计算平均绝对误差</span><br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><span class="hljs-built_in">print</span>(mean_absolute_error(test_y, predicted_home_prices))<br></code></pre></td></tr></table></figure>
+<p>现在，让我们再次运行代码，看一看我们的模型效果究竟如何？结果看起来并不好，误差到了 260000 左右。为了让模型的效果更好，我们调整<strong>决策树回归模型</strong>的叶子节点参数，找出<strong>过拟合和欠拟合的平衡点</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用不同数量叶子节点的决策树回归模型训练</span><br><span class="hljs-comment"># 超出过拟合和欠拟合的平衡点</span><br><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> trange<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_best</span>(<span class="hljs-params">leaf_nodes, train_x, train_y, test_x, test_y</span>):<br>    model = DecisionTreeRegressor(max_leaf_nodes=leaf_nodes, random_state=<span class="hljs-number">0</span>)<br>    model.fit(train_x, train_y)<br>    predicted_home_prices = model.predict(test_x)<br>    <span class="hljs-keyword">return</span> mean_absolute_error(test_y, predicted_home_prices)<br><br>best_mae = <span class="hljs-number">10000000</span><br>best_leaf_nodes = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> nodes <span class="hljs-keyword">in</span> trange(<span class="hljs-number">5</span>, <span class="hljs-number">1000</span>):<br>    mae = find_best(nodes, train_x, train_y, test_x, test_y)<br>    <span class="hljs-keyword">if</span> mae &lt; best_mae :<br>        best_mae = mae<br>        best_leaf_nodes = nodes<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Best leaf nodes:&quot;</span>, best_leaf_nodes)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Best Mean Absolute Error:&quot;</span>, best_mae)<br></code></pre></td></tr></table></figure>
+<p>这下我们的误差降到了 240000 左右，emm，看得出来，使用决策树模型的学习结果并不好。所以我们考虑使用<strong>随机森林</strong>进行机器学习，进而获得更好的预测结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestRegressor<br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br>file_path = <span class="hljs-string">&quot;./melb_data.csv&quot;</span><br>data = pd.read_csv(file_path)<br>data = data.dropna(axis=<span class="hljs-number">0</span>)<br>y = data.Price<br>data_features = [<span class="hljs-string">&#x27;Rooms&#x27;</span>, <span class="hljs-string">&#x27;Bathroom&#x27;</span>, <span class="hljs-string">&#x27;Landsize&#x27;</span>, <span class="hljs-string">&#x27;BuildingArea&#x27;</span>, <span class="hljs-string">&#x27;YearBuilt&#x27;</span>, <span class="hljs-string">&#x27;Lattitude&#x27;</span>, <span class="hljs-string">&#x27;Longtitude&#x27;</span>]<br>x = data[data_features]<br><br>train_x, test_x, train_y, test_y = train_test_split(x, y, random_state=<span class="hljs-number">0</span>)<br>new_model = RandomForestRegressor(random_state=<span class="hljs-number">0</span>)<br>new_model.fit(train_x, train_y)<br>new_predicted_home_prices = new_model.predict(test_x)<br><span class="hljs-built_in">print</span>(mean_absolute_error(test_y, new_predicted_home_prices))<br></code></pre></td></tr></table></figure>
+<p>运行之后，效果还不错，误差优化到 190000 左右，针对随机森林我们也可以尝试参数优化，让模型的效果更好。</p>
+<p><strong>Kaggle</strong> 的 <strong>Intro to Machine Learning</strong> 部分介绍到此就结束了，看起来，入门机器学习也并非困难，我们拥有了一个良好的开头。</p>
+<p>文章中涉及到的代码和数据文件均可在我的 <strong>Github</strong> 仓库中找到，感谢你的阅读。🥰🥰🥰</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#人工智能 机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Kaggle机器学习笔记</div>
+      <div>https://zijeff.github.io/2026/03/12/Kaggle机器学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zijeff</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/08/%E7%AC%AC%E5%8D%81%E5%85%AD%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFC-C-%E5%A4%A7%E5%AD%A6A%E7%BB%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/" title="第十六届蓝桥杯C/C++大学A组做题记录">
+                        <span class="hidden-mobile">第十六届蓝桥杯C/C++大学A组做题记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
