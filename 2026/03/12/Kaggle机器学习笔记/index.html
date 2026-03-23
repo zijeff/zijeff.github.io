@@ -27,7 +27,7 @@
 <meta property="og:description" content="写在开头 虽然作为网安专业学生之一，但是面对着 AI 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了机器学习和人工智能的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 Kaggle 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。 Intro to Machine Learning">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-11T16:51:33.000Z">
-<meta property="article:modified_time" content="2026-03-12T10:25:35.678Z">
+<meta property="article:modified_time" content="2026-03-17T13:37:58.153Z">
 <meta property="article:author" content="zijeff">
 <meta property="article:tag" content="人工智能 机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -298,6 +298,7 @@ $$<br>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestRegressor<br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br>file_path = <span class="hljs-string">&quot;./melb_data.csv&quot;</span><br>data = pd.read_csv(file_path)<br>data = data.dropna(axis=<span class="hljs-number">0</span>)<br>y = data.Price<br>data_features = [<span class="hljs-string">&#x27;Rooms&#x27;</span>, <span class="hljs-string">&#x27;Bathroom&#x27;</span>, <span class="hljs-string">&#x27;Landsize&#x27;</span>, <span class="hljs-string">&#x27;BuildingArea&#x27;</span>, <span class="hljs-string">&#x27;YearBuilt&#x27;</span>, <span class="hljs-string">&#x27;Lattitude&#x27;</span>, <span class="hljs-string">&#x27;Longtitude&#x27;</span>]<br>x = data[data_features]<br><br>train_x, test_x, train_y, test_y = train_test_split(x, y, random_state=<span class="hljs-number">0</span>)<br>new_model = RandomForestRegressor(random_state=<span class="hljs-number">0</span>)<br>new_model.fit(train_x, train_y)<br>new_predicted_home_prices = new_model.predict(test_x)<br><span class="hljs-built_in">print</span>(mean_absolute_error(test_y, new_predicted_home_prices))<br></code></pre></td></tr></table></figure>
 <p>运行之后，效果还不错，误差优化到 190000 左右，针对随机森林我们也可以尝试参数优化，让模型的效果更好。</p>
 <p><strong>Kaggle</strong> 的 <strong>Intro to Machine Learning</strong> 部分介绍到此就结束了，看起来，入门机器学习也并非困难，我们拥有了一个良好的开头。</p>
+<h2 id="Intermediate-Machine-Learning">Intermediate_Machine_Learning</h2>
 <p>文章中涉及到的代码和数据文件均可在我的 <strong>Github</strong> 仓库中找到，感谢你的阅读。🥰🥰🥰</p>
 
                 
@@ -388,6 +389,12 @@ $$<br>
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2026/03/22/%E7%AC%AC%E5%8D%81%E4%BA%94%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFC-C-%E5%A4%A7%E5%AD%A6A%E7%BB%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/" title="第十五届蓝桥杯C/C++大学A组做题记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">第十五届蓝桥杯C/C++大学A组做题记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
