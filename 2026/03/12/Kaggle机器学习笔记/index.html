@@ -19,15 +19,15 @@
   <meta name="author" content="zijeff">
   <meta name="keywords" content="">
   
-    <meta name="description" content="写在开头 虽然作为网安专业学生之一，但是面对着 AI 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了机器学习和人工智能的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 Kaggle 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。 Intro to Machine Learning">
+    <meta name="description" content="写在开头 虽然作为网安专业学生之一，但是面对着 AI 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了机器学习和人工智能的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 Kaggle 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。 Intro to Machine Lea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kaggle机器学习笔记">
 <meta property="og:url" content="https://zijeff.github.io/2026/03/12/Kaggle%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="极天一线云">
-<meta property="og:description" content="写在开头 虽然作为网安专业学生之一，但是面对着 AI 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了机器学习和人工智能的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 Kaggle 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。 Intro to Machine Learning">
+<meta property="og:description" content="写在开头 虽然作为网安专业学生之一，但是面对着 AI 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了机器学习和人工智能的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 Kaggle 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。 Intro to Machine Lea">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-11T16:51:33.000Z">
-<meta property="article:modified_time" content="2026-03-17T13:37:58.153Z">
+<meta property="article:modified_time" content="2026-03-29T15:58:40.947Z">
 <meta property="article:author" content="zijeff">
 <meta property="article:tag" content="人工智能 机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          3.6k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          12 分钟
+          30 分钟
         
       </span>
     
@@ -277,29 +277,128 @@
               <div class="markdown-body">
                 
                 <h2 id="写在开头">写在开头</h2>
-<p>虽然作为网安专业学生之一，但是面对着 <strong>AI</strong> 兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了<strong>机器学习和人工智能</strong>的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着 <strong>Kaggle</strong> 上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。</p>
-<h2 id="Intro-to-Machine-Learning">Intro to Machine Learning</h2>
-<p>这个部分的课程是对机器学习的初步探索，前置知识也很简单，了解 <strong>python</strong> 的基本语法就行。这里我们做的是回归任务，我们希望通过对已有的墨尔本房屋价格及其相关特征训练出一个模型，进而使得这个模型在面对新的房屋特征时，也能较好的预测出价格。</p>
+<p>虽然作为网安专业学生之一，但是面对着 <strong>AI</strong>
+兴起的时代大势，不学点相关知识未免显得自己闭门造车了。由于之前已经学习过了<strong>机器学习和人工智能</strong>的相关理论知识（详情可以见我的其他帖子），所以这篇文章主要是跟着
+<strong>Kaggle</strong>
+上的课程把相关的理论知识落地成为代码，可能也有一些我个人学习时解决的问题和思考。好的，闲话到此结束，接下来我们开始吧🥰。</p>
+<h2 id="intro-to-machine-learning">Intro to Machine Learning</h2>
+<p>这个部分的课程是对机器学习的初步探索，前置知识也很简单，了解
+<strong>python</strong>
+的基本语法就行。这里我们做的是回归任务，我们希望通过对已有的墨尔本房屋价格及其相关特征训练出一个模型，进而使得这个模型在面对新的房屋特征时，也能较好的预测出价格。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 数据来源于墨尔本的房屋价格</span><br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeRegressor<br><br>file_path = <span class="hljs-string">&quot;./melb_data.csv&quot;</span><br>data = pd.read_csv(file_path)<br>data = data.dropna(axis=<span class="hljs-number">0</span>)<br>y = data.Price<br>data_features = [<span class="hljs-string">&#x27;Rooms&#x27;</span>, <span class="hljs-string">&#x27;Bathroom&#x27;</span>, <span class="hljs-string">&#x27;Landsize&#x27;</span>, <span class="hljs-string">&#x27;BuildingArea&#x27;</span>, <span class="hljs-string">&#x27;YearBuilt&#x27;</span>, <span class="hljs-string">&#x27;Lattitude&#x27;</span>, <span class="hljs-string">&#x27;Longtitude&#x27;</span>]<br>x = data[data_features]<br>model = DecisionTreeRegressor(random_state=<span class="hljs-number">1</span>)<br>model.fit(x, y)<br><br><span class="hljs-comment"># 尝试简单的模型预测</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Making predictions for the following 5 houses:&quot;</span>)<br><span class="hljs-built_in">print</span>(x.head())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The predictions are&quot;</span>)<br><span class="hljs-built_in">print</span>(model.predict(x.head()))<br></code></pre></td></tr></table></figure>
-<p><code>pandas</code> 是用来处理表格数据的库，我们从文件中提取价格数据将其作为我们的预测目标，也就是 $y$ ，我们选取一部分指标作为特征向量作为 $x$ 。因为 <code>sklearn</code> 库中的模型训练大部分只支持数值输入，所以我们需要对字符串的数据做编码处理。因此，我们现在的特征尽可能选取数值型的特征。确定了特征和预测目标后，我们就可以开始训练了，训练中的 <code>random_state</code> 是训练的内部状态，状态一致可以确保训练出来的模型一致，从而确保我得到的结果是可以稳定复现的。</p>
+<p><code>pandas</code>
+是用来处理表格数据的库，我们从文件中提取价格数据将其作为我们的预测目标，也就是
+<span class="math inline"><em>y</em></span>
+，我们选取一部分指标作为特征向量作为 <span
+class="math inline"><em>x</em></span> 。因为 <code>sklearn</code>
+库中的模型训练大部分只支持数值输入，所以我们需要对字符串的数据做编码处理。因此，我们现在的特征尽可能选取数值型的特征。确定了特征和预测目标后，我们就可以开始训练了，训练中的
+<code>random_state</code>
+是训练的内部状态，状态一致可以确保训练出来的模型一致，从而确保我得到的结果是可以稳定复现的。</p>
 <p>训练之后，我们可以打印前五行数据，并对其做一个简单预测。然后你会发现，准确率特别高，几乎是一致的。那这毕竟只是前五个数据，所以我们需要一个指标评估模型在整体上的预测效果。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">predicted_home_prices = model.predict(x)<br><br><span class="hljs-comment"># 计算平均绝对误差</span><br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><span class="hljs-built_in">print</span>(mean_absolute_error(y, predicted_home_prices))<br></code></pre></td></tr></table></figure>
-<p>因此，我们选择了<strong>平均绝对误差（MAE）<strong>来评估模型好坏，其定义如下：<br>
-$$<br>
-MAE = \frac{1}{n}\sum_{i=1}^n\left|y_i-\hat{y}_i\right|<br>
-$$<br>
-其中， $n$ 为样本总数，$y_i$ 是对应样本的真实值，$\hat y_i$ 是对应样本的预测值，为了让误差能够累积，我们采用绝对值。运行后，我们发现我们的模型效果很好啊，只有 400 左右，意味着</strong>百万左右的房子，我们的预测偏差只有 400 左右</strong>。</p>
+<p>因此，我们选择了<strong>平均绝对误差（MAE）</strong>来评估模型好坏，其定义如下：
+<span class="math display">$$
+MAE = \frac{1}{n}\sum_{i=1}^n\left|y_i-\hat{y}_i\right|
+$$</span> 其中， <span class="math inline"><em>n</em></span>
+为样本总数，<span
+class="math inline"><em>y</em><sub><em>i</em></sub></span>
+是对应样本的真实值，<span
+class="math inline"><em>ŷ</em><sub><em>i</em></sub></span>
+是对应样本的预测值，为了让误差能够累积，我们采用绝对值。运行后，我们发现我们的模型效果很好啊，只有
+400 左右，意味着<strong>百万左右的房子，我们的预测偏差只有 400
+左右</strong>。</p>
 <p>但是，实际上我们的模型效果真的有这么好吗？🤔🤔🤔</p>
 <p>如果我们还记得机器学习的相关理论就会知道：这个时候模型往往是陷入了过拟合，即模型直接开始死记硬背训练集的数据特征，那我们的预测效果就会很好了。为了解决这个问题，我们需要将数据集划分为<strong>训练集和验证集</strong>，在训练集上训练模型，在验证集上验证模型的泛化能力。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br><span class="hljs-comment"># 为了验证模型的泛化能力，我们需要将数据划分为训练集和验证集</span><br>train_x, test_x, train_y, test_y = train_test_split(x, y, random_state=<span class="hljs-number">0</span>)<br>model = DecisionTreeRegressor(random_state=<span class="hljs-number">0</span>)<br>model.fit(train_x, train_y)<br>predicted_home_prices = model.predict(test_x)<br><br><span class="hljs-comment"># 计算平均绝对误差</span><br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><span class="hljs-built_in">print</span>(mean_absolute_error(test_y, predicted_home_prices))<br></code></pre></td></tr></table></figure>
-<p>现在，让我们再次运行代码，看一看我们的模型效果究竟如何？结果看起来并不好，误差到了 260000 左右。为了让模型的效果更好，我们调整<strong>决策树回归模型</strong>的叶子节点参数，找出<strong>过拟合和欠拟合的平衡点</strong>。</p>
+<p>现在，让我们再次运行代码，看一看我们的模型效果究竟如何？结果看起来并不好，误差到了
+260000
+左右。为了让模型的效果更好，我们调整<strong>决策树回归模型</strong>的叶子节点参数，找出<strong>过拟合和欠拟合的平衡点</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用不同数量叶子节点的决策树回归模型训练</span><br><span class="hljs-comment"># 超出过拟合和欠拟合的平衡点</span><br><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> trange<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_best</span>(<span class="hljs-params">leaf_nodes, train_x, train_y, test_x, test_y</span>):<br>    model = DecisionTreeRegressor(max_leaf_nodes=leaf_nodes, random_state=<span class="hljs-number">0</span>)<br>    model.fit(train_x, train_y)<br>    predicted_home_prices = model.predict(test_x)<br>    <span class="hljs-keyword">return</span> mean_absolute_error(test_y, predicted_home_prices)<br><br>best_mae = <span class="hljs-number">10000000</span><br>best_leaf_nodes = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> nodes <span class="hljs-keyword">in</span> trange(<span class="hljs-number">5</span>, <span class="hljs-number">1000</span>):<br>    mae = find_best(nodes, train_x, train_y, test_x, test_y)<br>    <span class="hljs-keyword">if</span> mae &lt; best_mae :<br>        best_mae = mae<br>        best_leaf_nodes = nodes<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Best leaf nodes:&quot;</span>, best_leaf_nodes)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Best Mean Absolute Error:&quot;</span>, best_mae)<br></code></pre></td></tr></table></figure>
-<p>这下我们的误差降到了 240000 左右，emm，看得出来，使用决策树模型的学习结果并不好。所以我们考虑使用<strong>随机森林</strong>进行机器学习，进而获得更好的预测结果。</p>
+<p>这下我们的误差降到了 240000
+左右，emm，看得出来，使用决策树模型的学习结果并不好。所以我们考虑使用<strong>随机森林</strong>进行机器学习，进而获得更好的预测结果。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestRegressor<br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br>file_path = <span class="hljs-string">&quot;./melb_data.csv&quot;</span><br>data = pd.read_csv(file_path)<br>data = data.dropna(axis=<span class="hljs-number">0</span>)<br>y = data.Price<br>data_features = [<span class="hljs-string">&#x27;Rooms&#x27;</span>, <span class="hljs-string">&#x27;Bathroom&#x27;</span>, <span class="hljs-string">&#x27;Landsize&#x27;</span>, <span class="hljs-string">&#x27;BuildingArea&#x27;</span>, <span class="hljs-string">&#x27;YearBuilt&#x27;</span>, <span class="hljs-string">&#x27;Lattitude&#x27;</span>, <span class="hljs-string">&#x27;Longtitude&#x27;</span>]<br>x = data[data_features]<br><br>train_x, test_x, train_y, test_y = train_test_split(x, y, random_state=<span class="hljs-number">0</span>)<br>new_model = RandomForestRegressor(random_state=<span class="hljs-number">0</span>)<br>new_model.fit(train_x, train_y)<br>new_predicted_home_prices = new_model.predict(test_x)<br><span class="hljs-built_in">print</span>(mean_absolute_error(test_y, new_predicted_home_prices))<br></code></pre></td></tr></table></figure>
-<p>运行之后，效果还不错，误差优化到 190000 左右，针对随机森林我们也可以尝试参数优化，让模型的效果更好。</p>
-<p><strong>Kaggle</strong> 的 <strong>Intro to Machine Learning</strong> 部分介绍到此就结束了，看起来，入门机器学习也并非困难，我们拥有了一个良好的开头。</p>
-<h2 id="Intermediate-Machine-Learning">Intermediate_Machine_Learning</h2>
-<p>文章中涉及到的代码和数据文件均可在我的 <strong>Github</strong> 仓库中找到，感谢你的阅读。🥰🥰🥰</p>
+<p>运行之后，效果还不错，误差优化到 190000
+左右，针对随机森林我们也可以尝试参数优化，让模型的效果更好。</p>
+<p><strong>Kaggle</strong> 的 <strong>Intro to Machine Learning</strong>
+部分介绍到此就结束了，看起来，入门机器学习也并非困难，我们拥有了一个良好的开头。</p>
+<h2 id="intermediate-machine-learning">Intermediate Machine
+Learning</h2>
+<p>前面我们拥有了一个良好的开头，我们训练了一个房价预测模型，并且取得了不错的成绩。但是，回顾我们的工作，显然，程序训练的模型效果并不能算很好。我们只是手动选取了几个特征，而还有相当多的特征被我们所忽略了。自然而然地，如果我们能利用上较多的特征，那么我们训练的模型预测效果应该还能得到提升。</p>
+<p>因此，也就引出了该部分的主要研究内容，即我们应该如何处理数据，进而使程序获得更好的学习。数据清洗通常针对以下几类常见问题展开。我们可以通过一个简单的表格来快速了解：</p>
+<table>
+
+<thead>
+<tr>
+<th>问题</th>
+<th>描述</th>
+<th>可能的影响</th>
+<th>常用清洗策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>缺失值</strong></td>
+<td>数据记录中某些字段的值为空（NaN, NULL）。</td>
+<td>导致样本被丢弃，信息损失，计算错误。</td>
+<td>删除、填充（均值/中位数/众数/预测）。</td>
+</tr>
+<tr>
+<td><strong>异常值</strong></td>
+<td>与大多数数据明显偏离的极端值。</td>
+<td>扭曲统计结果，影响模型性能。</td>
+<td>识别（IQR、Z-Score）后删除或修正。</td>
+</tr>
+<tr>
+<td><strong>重复值</strong></td>
+<td>数据集中存在完全相同的记录。</td>
+<td>使模型过度偏向重复样本，影响泛化能力。</td>
+<td>识别并删除重复项。</td>
+</tr>
+<tr>
+<td><strong>不一致性</strong></td>
+<td>数据格式、单位或编码不统一（如”男”、“Male”、“M”）。</td>
+<td>导致分组和分析错误。</td>
+<td>标准化、规范化、映射转换。</td>
+</tr>
+<tr>
+<td><strong>错误值</strong></td>
+<td>明显不合逻辑的值（如年龄为-1或300岁）。</td>
+<td>产生毫无意义的分析结果。</td>
+<td>根据业务逻辑进行修正或设为缺失。</td>
+</tr>
+</tbody>
+</table>
+<p>不要轻视对数据的预处理，好的数据可以让我们的模型训练事半功倍，该部分主要也是围绕此展开。</p>
+<p>首先，我们对缺失值进行讨论，具体方法如下：</p>
+<ul>
+<li>很自然的想法，我们会直接选择删除含有缺失值的这一列，也就是选择摆烂不管了。那么问题也是显而易见的，如果含有缺失值的列很多，都选择删去的话会让模型丢失大量有用的信息。</li>
+<li>在删除的基础上，我们更进一步的会想：删除不行，那就补一个值进去呗，也就是填充。那新的问题也就随之而来了，既然我要填入新的值，我该填啥呢？一般考虑填均值，众数，虽然也会带来一定的误差，但是总比删除好一点。</li>
+<li>填充值是标准方法，通常效果良好。然而，插补值可能系统性地高于或低于其实际值（实际值并未包含在数据集中）。或者，缺失值的行可能具有其他特殊性。在这种情况下，如果模型考虑哪些值原本缺失，则可以做出更好的预测。</li>
+</ul>
+<p>这些就是针对缺失值的处理方法了，代码主要如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br><span class="hljs-comment"># 读取数据</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Loading data...&quot;</span>)<br>data = pd.read_csv(<span class="hljs-string">&#x27;melb_data.csv&#x27;</span>)<br><br>y = data.Price<br><br><span class="hljs-comment"># 为了简化问题，我们只采用数值列作为特征进行训练</span><br>melb_predictors = data.drop([<span class="hljs-string">&#x27;Price&#x27;</span>], axis=<span class="hljs-number">1</span>)<br>x = melb_predictors.select_dtypes(exclude=[<span class="hljs-string">&#x27;object&#x27;</span>])<br><br><span class="hljs-comment"># 将原始数据划分为训练集和验证集</span><br>x_train, x_valid, y_train, y_valid = train_test_split(x, y, train_size=<span class="hljs-number">0.8</span>, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">0</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Setup complete&quot;</span>)<br><br><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestRegressor<br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><br><span class="hljs-comment"># 我们利用 MAE 检验三种处理方法的好坏</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">score_dataset</span>(<span class="hljs-params">x_train, x_valid, y_train, y_valid</span>):<br>    model = RandomForestRegressor(n_estimators=<span class="hljs-number">10</span>, random_state=<span class="hljs-number">0</span>)<br>    model.fit(x_train, y_train)<br>    preds = model.predict(x_valid)<br>    <span class="hljs-keyword">return</span> mean_absolute_error(y_valid, preds)<br><br><span class="hljs-comment"># 1. 直接删除含有缺失值的列</span><br>cols_with_missing = [col <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> x_train.columns <span class="hljs-keyword">if</span> x_train[col].isnull().<span class="hljs-built_in">any</span>()]<br><br>reduced_x_train = x_train.drop(cols_with_missing, axis=<span class="hljs-number">1</span>)<br>reduced_x_valid = x_valid.drop(cols_with_missing, axis=<span class="hljs-number">1</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAE from Approach 1 (Drop columns with missing values):&quot;</span>)<br><span class="hljs-built_in">print</span>(score_dataset(reduced_x_train, reduced_x_valid, y_train, y_valid))<br><br><span class="hljs-comment"># 2. 采用填充均值的方法填补缺失数据列</span><br><span class="hljs-keyword">from</span> sklearn.impute <span class="hljs-keyword">import</span> SimpleImputer<br><br>my_imputer = SimpleImputer()<br>imputed_x_train = pd.DataFrame(my_imputer.fit_transform(x_train))<br>imputed_x_valid = pd.DataFrame(my_imputer.transform(x_valid))<br><br>imputed_x_train.columns = x_train.columns<br>imputed_x_valid.columns = x_valid.columns<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAE from Approach 2 (Imputation):&quot;</span>)<br><span class="hljs-built_in">print</span>(score_dataset(imputed_x_train, imputed_x_valid, y_train, y_valid))<br><br><span class="hljs-comment"># 3. 填补缺失列，同时记录哪些列缺失</span><br>x_train_plus = x_train.copy()<br>x_valid_plus = x_valid.copy()<br><br><span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> cols_with_missing:<br>    x_train_plus[col + <span class="hljs-string">&#x27;_was_missing&#x27;</span>] = x_train_plus[col].isnull()<br>    x_valid_plus[col + <span class="hljs-string">&#x27;_was_missing&#x27;</span>] = x_valid_plus[col].isnull()<br><br>my_imputer = SimpleImputer()<br>imputed_x_train_plus = pd.DataFrame(my_imputer.fit_transform(x_train_plus))<br>imputed_x_valid_plus = pd.DataFrame(my_imputer.transform(x_valid_plus))<br><br>imputed_x_train_plus.columns = x_train_plus.columns<br>imputed_x_valid_plus.columns = x_valid_plus.columns<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAE from Approach 3 (An Extension to Imputation):&quot;</span>)<br><span class="hljs-built_in">print</span>(score_dataset(imputed_x_train_plus, imputed_x_valid_plus, y_train, y_valid))<br></code></pre></td></tr></table></figure>
+<p>运行后，发现方法二和方法三的 <strong>MAE</strong>
+接近，都好于方法一。</p>
+<p>在数据处理过程中，并非所有数据都是数值型的，也就意味着我们不能直接对这些数据进行数学运算。所以接下来，我们对非数值变量进行讨论，具体方法如下：</p>
+<ul>
+<li><p>处理分类变量最简单的方法就是直接从数据集中删除它们。但这种方法只有在这些列不包含任何有用信息时才有效。</p></li>
+<li><p><strong>序数编码</strong>将每个唯一值分配给不同的整数，将非数值变量转为数值进行运算。但是这也会带来一个新的问题，如果非数值变量之间不存在比较关系，这是简单的分类。比如物品的颜色，颜色之间的地位是等同的，我们如果分别给不同颜色一个数值，而不同的数值之间是存在大小关系的，那么<strong>模型</strong>也会认为这之间存在着比较关系。</p></li>
+<li><p>为了解决这个问题，我们采用 <strong>One-Hot Encoding</strong>
+来处理，它会创建新的列，指示原始数据中每个可能值的存在（或不存在）。在原始数据集中，“颜色”是一个分类变量，包含三个类别：“红色”、“黄色”和“绿色”。对应的独热编码包含一列，每列对应一个可能的值，并且每行对应原始数据集中的每一行。如果原始值为“红色”，则在“红色”列中写入
+1；如果原始值为“黄色”，则在“黄色”列中写入
+1，依此类推。与序数编码不同，独热编码不假定类别之间存在顺序。因此，如果类别数据中没有明显的顺序，这种方法尤其有效。我们将没有内在排序的类别变量称为<strong>名义变量</strong>
+。</p>
+<div class="note note-info">
+            <p>如果分类变量取值很多，独热编码通常表现不佳。也就是说，我们通常不会用于取值超过15 个不同值的变量。</p>
+          </div></li>
+</ul>
+<p>我们还是用 <strong>MAE</strong> 来衡量模型的好坏，具体代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br><span class="hljs-comment"># 读取数据</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Loading data...&quot;</span>)<br>data = pd.read_csv(<span class="hljs-string">&#x27;melb_data.csv&#x27;</span>)<br><br>y = data.Price<br>x = data.drop([<span class="hljs-string">&#x27;Price&#x27;</span>], axis=<span class="hljs-number">1</span>)<br><br><span class="hljs-comment"># 将原始数据划分为训练集和验证集</span><br>x_train_full, x_valid_full, y_train, y_valid = train_test_split(x, y, train_size=<span class="hljs-number">0.8</span>, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">0</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Setup complete&quot;</span>)<br><br><span class="hljs-comment"># 数据预处理</span><br><span class="hljs-comment"># 采用最简单的方法，移除含有缺失值的列</span><br>cols_with_missing = [col <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> x_train_full.columns <span class="hljs-keyword">if</span> x_train_full[col].isnull().<span class="hljs-built_in">any</span>()] <br>x_train_full.drop(cols_with_missing, axis=<span class="hljs-number">1</span>, inplace=<span class="hljs-literal">True</span>)<br>x_valid_full.drop(cols_with_missing, axis=<span class="hljs-number">1</span>, inplace=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 计算对应列唯一值的出现次数，正对应着教程所说的：</span><br><span class="hljs-comment"># 如果分类变量取值很多，独热编码通常表现不佳（即，通常不会用于取值超过 15 个不同值的变量）。</span><br><span class="hljs-comment"># PS：使用 Kaggle 上的代码我没有跑出 [&#x27;Type&#x27;, &#x27;Method&#x27;, &#x27;Regionname&#x27;]，我是将下面这行代码中的&#x27;object&#x27;改为&#x27;string&#x27;才能正确得到结果。</span><br>low_cardinality_cols = [cname <span class="hljs-keyword">for</span> cname <span class="hljs-keyword">in</span> x_train_full.columns <span class="hljs-keyword">if</span> x_train_full[cname].nunique() &lt; <span class="hljs-number">10</span> <span class="hljs-keyword">and</span> x_train_full[cname].dtype == <span class="hljs-string">&#x27;string&#x27;</span>]<br><span class="hljs-comment"># 选取数值列</span><br>numerical_cols = [cname <span class="hljs-keyword">for</span> cname <span class="hljs-keyword">in</span> x_train_full.columns <span class="hljs-keyword">if</span> x_train_full[cname].dtype <span class="hljs-keyword">in</span> [<span class="hljs-string">&#x27;int64&#x27;</span>, <span class="hljs-string">&#x27;float64&#x27;</span>]]<br><span class="hljs-comment"># 拼接得到对应列</span><br>my_cols = low_cardinality_cols + numerical_cols<br>x_train = x_train_full[my_cols].copy()<br>x_valid = x_valid_full[my_cols].copy()<br><br><span class="hljs-built_in">print</span>(x_train.head())<br><br><span class="hljs-comment"># 获取分类变量的对应列</span><br>s = (x_train.dtypes == <span class="hljs-string">&#x27;string&#x27;</span>)<br>object_cols = <span class="hljs-built_in">list</span>(s[s].index)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Categorical variables:&quot;</span>)<br><span class="hljs-built_in">print</span>(object_cols)<br><br><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestRegressor<br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><br><span class="hljs-comment"># 我们利用 MAE 检验不同处理方法的好坏</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">score_dataset</span>(<span class="hljs-params">x_train, x_valid, y_train, y_valid</span>):<br>    model = RandomForestRegressor(n_estimators=<span class="hljs-number">10</span>, random_state=<span class="hljs-number">0</span>)<br>    model.fit(x_train, y_train)<br>    preds = model.predict(x_valid)<br>    <span class="hljs-keyword">return</span> mean_absolute_error(y_valid, preds)<br><br><span class="hljs-comment"># 1.我们使用 select_dtypes() 方法删除 object 列。</span><br>drop_X_train = x_train.select_dtypes(exclude=[<span class="hljs-string">&#x27;object&#x27;</span>])<br>drop_X_valid = x_valid.select_dtypes(exclude=[<span class="hljs-string">&#x27;object&#x27;</span>])<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAE from Approach 1 (Drop categorical variables):&quot;</span>)<br><span class="hljs-built_in">print</span>(score_dataset(drop_X_train, drop_X_valid, y_train, y_valid))<br><br><span class="hljs-comment"># 2.使用序数编码处理</span><br><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> OrdinalEncoder<br><br><span class="hljs-comment"># 复制一份数据，保持原始数据不变</span><br>label_X_train = x_train.copy()<br>label_X_valid = x_valid.copy()<br><br>ordinal_encoder = OrdinalEncoder()<br>label_X_train[object_cols] = ordinal_encoder.fit_transform(x_train[object_cols])<br>label_X_valid[object_cols] = ordinal_encoder.transform(x_valid[object_cols])<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAE from Approach 2 (Ordinal Encoding):&quot;</span>) <br><span class="hljs-built_in">print</span>(score_dataset(label_X_train, label_X_valid, y_train, y_valid))<br><br><span class="hljs-comment"># 3.使用 OneHot 编码处理</span><br><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> OneHotEncoder<br><br>OH_encoder = OneHotEncoder(handle_unknown=<span class="hljs-string">&#x27;ignore&#x27;</span>, sparse_output=<span class="hljs-literal">False</span>)<br>OH_cols_train = pd.DataFrame(OH_encoder.fit_transform(x_train[object_cols]))<br>OH_cols_valid = pd.DataFrame(OH_encoder.transform(x_valid[object_cols]))<br><br><span class="hljs-comment"># 将索引值赋值回</span><br>OH_cols_train.index = x_train.index<br>OH_cols_valid.index = x_valid.index<br><br><span class="hljs-comment"># 移除原本的类别变量列，我们使用OneHot编码列代替</span><br>num_X_train = x_train.drop(object_cols, axis=<span class="hljs-number">1</span>)<br>num_X_valid = x_valid.drop(object_cols, axis=<span class="hljs-number">1</span>)<br><br><span class="hljs-comment"># 将编码列添加回数值列</span><br>OH_X_train = pd.concat([num_X_train, OH_cols_train], axis=<span class="hljs-number">1</span>)<br>OH_X_valid = pd.concat([num_X_valid, OH_cols_valid], axis=<span class="hljs-number">1</span>)<br><br>OH_X_train.columns = OH_X_train.columns.astype(<span class="hljs-built_in">str</span>)<br>OH_X_valid.columns = OH_X_valid.columns.astype(<span class="hljs-built_in">str</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAE from Approach 3 (One-Hot Encoding):&quot;</span>) <br><span class="hljs-built_in">print</span>(score_dataset(OH_X_train, OH_X_valid, y_train, y_valid))<br></code></pre></td></tr></table></figure>
+<p>运行后，发现方法二和方法三的 <strong>MAE</strong>
+接近，都好于方法一。现在，我们回过头来看，我们的模型效果得到了一个比较好的优化，<strong>MAE</strong>
+从一开始的 190000 到现在的 170000，所以好的数据可以使模型更好。</p>
+<p>文章中涉及到的代码和数据文件均可在我的 <strong>Github</strong>
+仓库中找到，感谢你的阅读。🥰🥰🥰</p>
 
                 
               </div>
